@@ -1,0 +1,7 @@
+streamlit
+openai
+gspread
+oauth2client
+langchain
+langchain-community
+python-dotenv
