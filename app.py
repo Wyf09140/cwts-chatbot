@@ -53,7 +53,7 @@ translations = {
 # ✅ Language selection
 lang_code_map = {"English": "en", "\u4e2d\u6587\uff08\u7b80\u4f53\uff09": "zh-CN", "\u4e2d\u6587\uff08\u7e41\u9ad4\uff09": "zh-TW"}
 language_options = ["Please select a language / \u8bf7\u9009\u62e9\u8bed\u8a00", *lang_code_map.keys()]
-selected_lang = st.selectbox("\ud83c\udf10 Language", language_options, index=0)
+selected_lang = st.selectbox("Language", language_options, index=0)
 if selected_lang == language_options[0]:
     st.stop()
 
