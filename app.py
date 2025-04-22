@@ -7,7 +7,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 from langchain_community.vectorstores import FAISS
 from langchain_community.embeddings import OpenAIEmbeddings
 import json
-from fuzzywuzzy import process
+
 
 
 openai_key = st.secrets["OPENAI_API_KEY"]
@@ -148,10 +148,6 @@ if st.session_state.user_info_collected:
 
         vectordb = FAISS.load_local("faiss_index", embeddings, allow_dangerous_deserialization=True)
         retriever = vectordb.as_retriever(search_kwargs={"k": 5})
-        all_texts = [doc.page_content for doc in retriever.vectorstore._documents]  # 从FAISS中提取全部原始文本内容
-
-        # 🔴 使用 fuzzywuzzy 匹配最相关内容
-        best_match, score = process.extractOne(user_input, all_texts)
         docs = retriever.get_relevant_documents(user_input)
         context = "\n".join([doc.page_content for doc in docs])
 
