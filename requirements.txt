@@ -5,4 +5,5 @@ oauth2client
 langchain
 langchain-community
 faiss-cpu
-tiktoken 
+fuzzywuzzy
+python-Levenshtein
