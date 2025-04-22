@@ -5,3 +5,4 @@ oauth2client
 langchain
 langchain-community
 faiss-cpu
+tiktoken 
