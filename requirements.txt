@@ -4,4 +4,4 @@ gspread
 oauth2client
 langchain
 langchain-community
-python-dotenv
+faiss-cpu
