@@ -9,7 +9,6 @@ from langchain_community.embeddings import OpenAIEmbeddings
 import json
 
 
-
 openai_key = st.secrets["OPENAI_API_KEY"]
 
 client = OpenAI(api_key=openai_key)
@@ -151,37 +150,35 @@ if st.session_state.user_info_collected:
         docs = retriever.get_relevant_documents(user_input)
         context = "\n".join([doc.page_content for doc in docs])
 
-            context = "\n".join([doc.page_content for doc in docs])
- 
-         messages = [
-                {
-         "role": "system",
-         "content": f"""
-                             You are a knowledgeable and trustworthy admissions assistant at a Christian Witness Theological Seminary.
-                             
-                             You must strictly answer ONLY based on the following provided document content.
-                             
-                             Use the user's input language when replying:
-                             - If they speak English, reply in English.
-                             - If they use Chinese (simplified or traditional), reply in Chinese.
-                             - Do not mix Chinese and English unless necessary.
-                             
-                             Please format your response with:
-                             - Bullet points
-                             - Line breaks
-                             - Short paragraphs for easier reading
-                             
-                             If the answer is not found, say: "{t['no_answer']}"
-                             You are helping the Admission and Marketing team, so you are allowed to use marketing language when appropriate.
-                             
-                             Do NOT use outside knowledge.
- 
-                             Document:
-                             {context}
-                             """
-                                           }
-                                      ] + [{"role": m["role"], "content": m["content"]} for m in st.session_state.messages]
- 
+        messages = [
+            {
+                "role": "system",
+                "content": f"""
+                            You are a knowledgeable and trustworthy admissions assistant at a Christian Witness Theological Seminary.
+                            
+                            You must strictly answer ONLY based on the following provided document content.
+                            
+                            Use the user's input language when replying:
+                            - If they speak English, reply in English.
+                            - If they use Chinese (simplified or traditional), reply in Chinese.
+                            - Do not mix Chinese and English unless necessary.
+                            
+                            Please format your response with:
+                            - Bullet points
+                            - Line breaks
+                            - Short paragraphs for easier reading
+                            
+                            If the answer is not found, say: "{t['no_answer']}"
+                            You are helping the Admission and Marketing team, so you are allowed to use marketing language when appropriate.
+                            
+                            Do NOT use outside knowledge.
+
+                            Document:
+                            {context}
+                            """
+                                          }
+                                     ] + [{"role": m["role"], "content": m["content"]} for m in st.session_state.messages]
+
 
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
