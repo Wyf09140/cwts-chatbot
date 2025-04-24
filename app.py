@@ -184,7 +184,7 @@ if st.session_state.user_info_collected:
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=messages,
-            temperature=0.6
+            temperature=0.7
         )
         reply = response.choices[0].message.content
         st.session_state.messages.append({"role": "assistant", "content": reply})
