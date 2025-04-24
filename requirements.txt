@@ -7,3 +7,4 @@ langchain-community
 faiss-cpu
 fuzzywuzzy
 python-Levenshtein
+tiktoken 
